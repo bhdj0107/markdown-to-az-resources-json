@@ -12,11 +12,11 @@ Follow these rules strictly:
    - `subnet`: (Optional) For resources deployed directly within a subnet or for `pe` (Private Endpoint) resources. The subnet where the resource or private endpoint is deployed (e.g., `app`, `db`, `pe`)
    - `origin`: (Optional) Used for private endpoints to indicate the resource they connect to
 
-3. Valid resource types:
+3. Valid resource types - DO NOT include any resource types not listed here:
    - Compute & container: `vm`, `aks`, `appgw`
    - Databases within VNET: `mysql`, `mssql`, `postgres`, `redis`, `mongodb`
    - PaaS resources outside VNET: `paas-eventhub`, `paas-redis`, `paas-mysql`, `paas-mssql`, `paas-acr`, `paas-keyvault`, `paas-monitor`, `paas-storage`
-
+   
 4. Valid subnet names: `appgw`, `app`, `db`, `etc`, `etc2`, `pe`
 
 5. Resource naming convention:
