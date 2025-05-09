@@ -10,7 +10,7 @@ import os
 dotenv.load_dotenv()
 
 # Example of how you might use this team:
-async def main(prompt):
+async def main(prompt, markdown_path):
     # Create the Azure OpenAI model client
     azure_openai_client = AzureOpenAIChatCompletionClient(
         model="gpt-4o",
@@ -49,7 +49,7 @@ async def main(prompt):
         termination_condition=termination_condition
     )
     # load md
-    with open("info.md", "r") as file:
+    with open(markdown_path, "r") as file:
         input_text = file.read()
     # Initialize the chat
     chat_result = await team.run(
@@ -64,8 +64,8 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", type=str)
+    parser.add_argument("--markdown", type=str, default="info.md")
     args = parser.parse_args()
-    
     
     if args.mode == "suggest":
         with open("prompts/suggestion-from-info.txt", "r") as file:
@@ -76,4 +76,4 @@ if __name__ == "__main__":
     else:
         raise ValueError(f"Invalid mode: {args.mode}\nValid modes: suggest, parsing")
     
-    print(asyncio.run(main(prompt)))
+    print(asyncio.run(main(prompt, args.markdown)))
